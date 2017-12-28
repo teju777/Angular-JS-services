@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    
+    <link rel="stylesheet" href="index.css" type="text/css">
+</head>
+<body ng-controller="myCtrl">
+
+<div id="b"> Search: <input type="text" ng-model="searchBox" id="search" > </div>
+
+
+<div class="{{x.gender}}" ng-repeat= "x in names | filter:searchBox " ng-if="searchBox">
+
+
+        <p>{{x.name}}</p>
+        <p>{{x.gender}}</p>
+        <p>{{x.email}}</p>
+        <p>{{x.city}}</p>
+
+<div class="one"> </div>
+
+    </div>
+
+
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("package.json").then(function (response) {
+            $scope.names = response.data.teju;
+        });
+    });
+
+
+</script>
+</body>
+</html>
